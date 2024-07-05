@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.react_query_back.board.dao.BoardMapper">
+    <select id="getBoardList" resultType="com.example.react_query_back.board.model.BoardVO">
+        SELECT
+                IDX
+            ,   TITLE
+            ,   CONTENT
+            ,   CREATE_WRITER
+            ,   CREATE_DT
+            ,   UPDATE_WRITER
+            ,   UPDATE_DT
+        FROM
+            Board
+    </select>
+
+    <select id="getBoard" parameterType="int" resultType="com.example.react_query_back.board.model.BoardVO">
+        SELECT
+            IDX
+             ,   TITLE
+             ,   CONTENT
+             ,   CREATE_WRITER
+             ,   CREATE_DT
+             ,   UPDATE_WRITER
+             ,   UPDATE_DT
+        FROM
+            Board
+        WHERE
+            IDX = #{idx}
+    </select>
+
+    <insert id="createBoard" parameterType="com.example.react_query_back.board.model.BoardVO">
+        INSERT INTO
+            Board
+            (
+                TITLE
+             ,  CONTENT
+             ,  CREATE_WRITER
+             ,  CREATE_DT
+             ,  UPDATE_WRITER
+             ,  UPDATE_DT
+            )
+        VALUES
+            (
+                #{title}
+             ,  #{content}
+             ,  #{createWriter}
+             ,  NOW()
+             ,  #{updateWriter}
+             ,  NOW()
+            )
+    </insert>
+
+    <delete id="deleteBoard" parameterType="int">
+        DELETE
+        FROM
+            Board
+        WHERE
+            IDX = #{idx}
+    </delete>
+
+    <update id="updateBoard" parameterType="com.example.react_query_back.board.model.BoardVO">
+        UPDATE
+            Board
+        SET
+                TITLE         = #{title}
+            ,   CONTENT       = #{content}
+            ,   UPDATE_WRITER = #{updateWriter}
+            ,   UPDATE_DT     = NOW()
+        WHERE
+            IDX = #{idx}
+    </update>
+</mapper>
