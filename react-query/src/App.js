@@ -3,6 +3,9 @@ import BoardList from './pages/BoardList';
 import useBoardStore from './store/useBoardStore';
 import BoardDetail from './pages/BoardDetail';
 import BoardCreate from './pages/BoardCreate';
+import LoginPage from './pages/LoginPage';
+
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
   const { selectBoardInfo } = useBoardStore();
@@ -11,12 +14,19 @@ function App() {
   
 
   return (
-    <div className="User">
-      <BoardCreate />
+    <BrowserRouter>
+
+      <LoginPage />
+
+    {/* <div className="User"> */}
+
+
+      {/* <BoardCreate />
 
       <BoardList />
-      {boardDetailData  && <BoardDetail />  }
-    </div>
+      {boardDetailData  && <BoardDetail />  } */}
+  {/* </div> */}
+    </BrowserRouter>
   );
 }
 
